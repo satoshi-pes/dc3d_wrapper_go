@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-# Copyright 2016 The Go Authors. All rights reserved.
-# Use of this source code is governed by a BSD-style
-# license that can be found in the LICENSE file.
 set -e
 
 FC=gfortran
@@ -26,5 +23,11 @@ case "$FC" in
 esac
 
 echo $CGO_LDFLAGS
+
+# get DC3D
+if [ ! -f DC3D.f ]; then
+    # download the DC3D.f from NIED website
+    wget https://www.bosai.go.jp/e/txt/DC3Dfortran.txt -O DC3D.f
+fi
 
 go build
