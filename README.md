@@ -45,7 +45,7 @@ subroutine dc3d_wrapper(a, x, y, z, c, dip, L, W, U1, U2, U3, d1, d2, d3) bind(C
   d3 = UZ
 end subroutine dc3d_wrapper
 ```
-in which the intent variables must be passed carefully. The variables of intent(in) should be passed by value, and the variables of intent(inout) or intent(out) should be passed by pointer.  
+in which the intent variables must be passed carefully. All of the variables of intent(in), intent(out), and intent(inout) should be passed by pointer because the arguments of fortran function and subroutine are passed by reference.  
 
 Moreover, subroutines of Fortran can have multiple return values that is not supported by c language. In that case, multiple return values have to be passed through the arguments of the form "void func(args*...)". 
 
