@@ -23,9 +23,9 @@ Introduction of Go packages that call C code. Fortran examples are also availabl
 https://go.dev/misc/cgo/fortran/
 
 #### calling DC3D from golang  
-DC3D is coded in Fortran77 and some modification is needed to call from golang. So it is easier to write a wrapper code using "iso_c_binding" introduced from Fortran2003. 
+DC3D is coded in Fortran77 and some modification is needed to call from golang directly. So it is easier to write a wrapper code using "iso_c_binding" introduced from Fortran2003. 
 
-The "iso_c_binding" provides a variable type called c_float, which corresponds to real\*4 in fortran77, and in DC3D variables are declared as real*4, so the wrapper function using "iso_c_binding" is simply as follows: 
+The "iso_c_binding" provides a variable type called c_float, which corresponds to real\*4 in fortran77, and in DC3D variables are declared as real\*4, so the wrapper function using "iso_c_binding" is simply as follows: 
 ```
 subroutine dc3d_wrapper(a, x, y, z, c, dip, L, W, U1, U2, U3, d1, d2, d3) bind(C)
   use iso_c_binding, only: c_float, c_int
