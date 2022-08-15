@@ -47,7 +47,7 @@ end subroutine dc3d_wrapper
 ```
 in which the intent variables must be passed carefully. All of the variables of intent(in), intent(out), and intent(inout) should be passed by pointer because the arguments of fortran function and subroutine are passed by reference.  
 
-Moreover, subroutines of Fortran can have multiple return values that is not supported by c language. In that case, multiple return values have to be passed through the arguments of the form "void func(args*...)". 
+Moreover, subroutines of Fortran can have multiple return values that is not supported by c functions. In that case, multiple return values have to be passed through the arguments of the form "void func(args*...)". 
 
 An example fo cgo wrapper is as follows:
 ```
@@ -57,6 +57,36 @@ An example fo cgo wrapper is as follows:
 void dc3d_wrapper(float*, float*, float*, float*, float*, float*, float*, float*, float*, float*, float*, float*, float*, float*);
 */
 import "C"
+
+func dc3d(a, x, y, z, c, dip, l, w, u1, u2, u3 float64) (d1, d2, d3 float64) {
+	var a_c, x_c, y_c, z_c, c_c, dip_c, l_c, w_c, u1_c, u2_c, u3_c C.float
+	var d1_c, d2_c, d3_c C.float
+
+	// cast variables to be consistent with the DC3D.f.
+	// The variables are declared as float*4 in DC3D.
+	// So each variable would be casted to "C.float".
+	a_c = (C.float)(a)
+	x_c = (C.float)(x)
+	y_c = (C.float)(y)
+	z_c = (C.float)(z)
+	c_c = (C.float)(c)
+	dip_c = (C.float)(dip)
+	l_c = (C.float)(l)
+	w_c = (C.float)(w)
+	u1_c = (C.float)(u1)
+	u2_c = (C.float)(u2)
+	u3_c = (C.float)(u3)
+
+	// all of the arguments are passed by pointer because the fortran sub-programms uses references for arguments.
+	C.dc3d_wrapper(&a_c, &x_c, &y_c, &z_c, &c_c, &dip_c, &l_c, &w_c, &u1_c, &u2_c, &u3_c, &d1_c, &d2_c, &d3_c)
+
+	// return values also should be casted to golang variable types
+	d1 = float64(d1_c)
+	d2 = float64(d2_c)
+	d3 = float64(d3_c)
+
+	return d1, d2, d3
+}
 ```
 
 
