@@ -62,8 +62,8 @@ import "C"
 
 ## References
 #### NIED websiete:
--https://www.bosai.go.jp/e/dc3d.html  
--https://www.bosai.go.jp/e/txt/DC3Dfortran.txt
+- https://www.bosai.go.jp/e/dc3d.html  
+- https://www.bosai.go.jp/e/txt/DC3Dfortran.txt
 
 #### Okada (1992):
 Yoshimitsu Okada; Internal deformation due to shear and tensile faults in a half-space. Bulletin of the Seismological Society of America 1992;; 82 (2): 1018–1040. doi: https://doi.org/10.1785/BSSA0820021018
