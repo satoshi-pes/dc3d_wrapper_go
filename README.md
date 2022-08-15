@@ -27,6 +27,8 @@ DC3D is coded in Fortran77 and some modification is needed to call from golang d
 
 The "iso_c_binding" provides a variable type called c_float, which corresponds to real\*4 in fortran77, and in DC3D variables are declared as real\*4, so the wrapper function using "iso_c_binding" is simply as follows: 
 ```
+dc3d_wrapper.f90:
+
 subroutine dc3d_wrapper(a, x, y, z, c, dip, L, W, U1, U2, U3, d1, d2, d3) bind(C)
   use iso_c_binding, only: c_float, c_int
   implicit none
@@ -51,6 +53,8 @@ Moreover, subroutines of Fortran can have multiple return values that is not sup
 
 An example fo cgo wrapper is as follows:
 ```
+dc3d_wrap.go:
+
 /*
 // cgo wrapper for dc3d
 // subroutine dc3d_wrapper(a, x, y, z, c, dip, L, W, U1, U2, U3, d1, d2, d3) bind(C)
