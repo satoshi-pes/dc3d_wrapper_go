@@ -1,4 +1,4 @@
-! This is 
+! This is wrapper of DC3D.f using iso_c_binding feature introduced from Fortran2003.
 !
 subroutine dc3d_wrapper(a, x, y, z, c, dip, L, W, U1, U2, U3, d1, d2, d3) bind(C)
   use iso_c_binding, only: c_float, c_int
